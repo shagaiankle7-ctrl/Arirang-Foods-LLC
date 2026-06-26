@@ -484,6 +484,9 @@ function render(){
     for(var n=1;n<=5;n++) h+='<button class="sc" data-val="'+n+'" onclick="pickSC(this)">'+n+'</button>';
     h+='</div>';
     h+='<div class="acts"><button class="btn-go" id="nb" disabled onclick="nextQ()">Үргэлжлүүлэх →</button></div>';
+  } else if(q.t==="text"){
+    h+='<input type="text" id="ti" placeholder="Энд бичнэ үү..." style="width:100%;border:1.5px solid #e5e7eb;border-radius:8px;padding:12px 14px;font-size:14px;font-family:inherit;color:#111827;background:#f9fafb;outline:none">';
+    h+='<div class="acts"><button class="btn-go" id="nb" onclick="nextQ()">Үргэлжлүүлэх →</button></div>';
   } else if(q.t==="open"){
     h+='<textarea id="oi" placeholder="Энд бичнэ үү..."></textarea>';
     h+='<div class="acts"><button class="btn-go" id="nb" onclick="nextQ()">Үргэлжлүүлэх →</button></div>';
@@ -500,6 +503,7 @@ function pickSC(el){var btns=document.querySelectorAll(".sc");for(var i=0;i<btns
 function nextQ(){
   var q=Q[cur];
   if(q.t==="open"){var el=document.getElementById("oi");if(el) ans[q.id]=el.value.trim();}
+  if(q.t==="text"){var el=document.getElementById("ti");if(el) ans[q.id]=el.value.trim();}
   xp+=q.xp;
   toast(tmsgs[Math.floor(Math.random()*tmsgs.length)]);
   cur++;
